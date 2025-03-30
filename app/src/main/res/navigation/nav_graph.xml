@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.dydrian.mob22.ui.HomeFragment"
+        android:name="com.dydrian.mob22.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home" />
     <!-- TODO  -->
     <!--    <fragment-->

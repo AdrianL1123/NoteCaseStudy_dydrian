@@ -5,4 +5,8 @@
     <color name="error">#AA2929</color>
     <color name="success">#2F863E</color>
     <color name="gray">#7D7D7D</color>
+    <color name="option_red">#FFB2B2</color>
+    <color name="option_blue">#ABE6FF</color>
+    <color name="option_gree">#CEFFB2</color>
+    <color name="option_yellow">#FDFFB0</color>
 </resources>
