@@ -11,6 +11,7 @@ class NoteAdapter(
     private var notes: List<Note>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var listener: Listener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemNoteBinding.inflate(inflater, parent, false)
@@ -39,6 +40,14 @@ class NoteAdapter(
         fun bind(note: Note) {
             binding.tvTitle.text = note.title
             binding.tvDesc.text = note.desc
+            binding.mcvNote.setOnClickListener {
+                listener?.onClickItem(note)
+            }
         }
     }
+
+    interface Listener {
+        fun onClickItem(item: Note)
+    }
 }
+
