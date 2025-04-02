@@ -118,7 +118,7 @@ class AddNoteFragment : Fragment() {
                 when (state) {
                     is AddNoteState.Success -> {
                         Toast.makeText(
-                            requireContext(), "Note added successfully!", Toast.LENGTH_SHORT
+                            requireContext(), R.string.success, Toast.LENGTH_SHORT
                         ).show()
                         findNavController().popBackStack()
                     }

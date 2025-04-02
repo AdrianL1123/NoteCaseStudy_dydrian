@@ -2,6 +2,7 @@ package com.dydrian.mob22.ui.addNote
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dydrian.mob22.R
 import com.dydrian.mob22.data.model.Note
 import com.dydrian.mob22.data.repo.NoteRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -36,16 +37,16 @@ class AddNoteViewModel @Inject constructor(
     private fun addNote(title: String, description: String, color: Int) {
         viewModelScope.launch {
             try {
-                require(title.isNotEmpty()) { "Title cannot be empty" }
-                require(description.isNotEmpty()) { "Description cannot be empty" }
+                require(title.isNotEmpty()) { R.string.empty_title }
+                require(description.isNotEmpty()) { R.string.empty_desc }
 
                 val note = Note(title = title, desc = description, color = color)
                 // add note to the database
                 repo.addNote(note)
 
-                _state.value = AddNoteState.Success("Note added successfully")
+                _state.value = AddNoteState.Success(R.string.success.toString())
             } catch (e: Exception) {
-                _state.value = AddNoteState.Error(e.message ?: "An error occurred")
+                _state.value = AddNoteState.Error(e.message ?: R.string.error.toString())
             }
         }
     }
