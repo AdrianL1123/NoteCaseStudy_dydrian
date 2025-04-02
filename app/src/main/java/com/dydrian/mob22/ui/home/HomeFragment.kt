@@ -1,5 +1,6 @@
 package com.dydrian.mob22.ui.home
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -108,6 +109,7 @@ class HomeFragment : Fragment() {
     /**
      * Logout dialog
      */
+    @SuppressLint("SetTextI18n")
     private fun showLogoutDialog() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

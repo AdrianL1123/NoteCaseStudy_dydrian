@@ -1,5 +1,6 @@
 package com.dydrian.mob22.data.repo
 
+import com.dydrian.mob22.R
 import com.dydrian.mob22.core.CustomException
 import com.dydrian.mob22.core.service.AuthService
 import com.dydrian.mob22.data.model.Note
@@ -18,7 +19,7 @@ class NoteRepoFirestoreImpl(
 ) : NoteRepo {
     private fun getCollectionRef(): CollectionReference {
         val uid = authService.getUid()
-            ?: throw CustomException("No valid user found")
+            ?: throw CustomException(R.string.no_valid_user_found.toString())
         return db.collection("users/$uid/notes")
     }
 
