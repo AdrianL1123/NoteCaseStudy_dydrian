@@ -5,8 +5,21 @@
     <color name="error">#AA2929</color>
     <color name="success">#2F863E</color>
     <color name="gray">#7D7D7D</color>
-    <color name="option_red">#FFB2B2</color>
-    <color name="option_blue">#ABE6FF</color>
-    <color name="option_gree">#CEFFB2</color>
-    <color name="option_yellow">#FDFFB0</color>
+    <color name="red">#FFFF0000</color>
+    <color name="blue">#0000EE</color>
+    <color name="lightBlue">#2196F3</color>
+    <color name="green">#FF00FF00</color>
+    <color name="yellow">#FFFFFF00</color>
+    <color name="orange">#FFFFA500</color>
+    <color name="purple">#FF800080</color>
+    <color name="pink">#FFFFC0CB</color>
+    <color name="brown">#FFA52A2A</color>
+    <color name="grey">#FF808080</color>
+    <color name="cyan">#FF00FFFF</color>
+    <color name="skyBlue">#87CEEB</color>
+    <color name="teal_blue">#497c93</color>
+    <color name="beige">#F8F3F3</color>
+    <color name="magenta">#aa00bb</color>
+    <color name="lightOrange">#fec90b</color>
+    <color name="darkGrey">#121212</color>
 </resources>

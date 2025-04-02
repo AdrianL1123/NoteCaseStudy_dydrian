@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dydrian.mob22.databinding.FragmentDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,8 +39,12 @@ class DetailsFragment : Fragment() {
                     if (state.note != null) View.VISIBLE else View.GONE
 
                 state.note?.let { note ->
-                    binding.title.text = note.title
-                    binding.desc.text = note.desc
+                    binding.tvTitle.text = note.title
+                    binding.tvDesc.text = note.desc
+                    binding.cardBg.setBackgroundColor(note.color)
+                }
+                binding.btnBack.setOnClickListener {
+                    findNavController().popBackStack()
                 }
             }
         }

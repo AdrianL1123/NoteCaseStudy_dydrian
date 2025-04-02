@@ -17,7 +17,7 @@ class NoteRepoFirestoreImpl(
         return db.collection("notes")
     }
 
-    override suspend fun getNotes(): Flow<List<Note>> = callbackFlow {
+    override fun getNotes(): Flow<List<Note>> = callbackFlow {
         val listener = getCollectionRef().addSnapshotListener { value, error ->
             if (error != null) {
                 trySend(emptyList())
@@ -37,5 +37,10 @@ class NoteRepoFirestoreImpl(
     override suspend fun getNoteById(id: String): Note? {
         val snapshot = getCollectionRef().document(id).get().await()
         return snapshot.toObject(Note::class.java)?.copy(id = snapshot.id)
+    }
+
+    override suspend fun addNote(note: Note) {
+        val docRef = getCollectionRef().document()
+        docRef.set(note.copy(id = docRef.id)).await()
     }
 }

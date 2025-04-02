@@ -4,5 +4,5 @@ data class Note(
     val id: String? = null,
     val title: String = "",
     val desc: String = "",
-    val color: Int = -1
+    val color: Int = 0
 )

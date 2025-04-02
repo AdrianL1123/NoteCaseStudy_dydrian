@@ -40,6 +40,10 @@ class HomeFragment : Fragment() {
                 adapter.setNotes(notes = state.notes)
             }
         }
+
+        binding.fabAdd.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.homeToAddNote())
+        }
     }
 
     private fun observerState() {

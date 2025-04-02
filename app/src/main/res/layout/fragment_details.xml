@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".ui.details.DetailsFragment">
 
     <!-- Progress Bar for Loading State -->
@@ -18,25 +20,87 @@
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="top"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:visibility="gone">
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="tester"
-            android:textSize="18sp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:padding="14dp"
+            android:text="Details"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/desc"
+        <LinearLayout
+            android:id="@+id/cardBg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="Title of Your Note"
+                android:padding="@dimen/m"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="start"
+                android:hint="Enter Your Description"
+                android:minLines="7"
+                android:padding="@dimen/m"
+                android:textColor="@color/darkGrey"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEdit"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/lightBlue"
+                android:text="Edit"
+                app:cornerRadius="@dimen/m" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                android:text="Delete"
+                app:cornerRadius="@dimen/m" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="tester"
-            android:textSize="16sp" />
+            android:layout_gravity="bottom|center"
+            android:textColor="@color/white"
+            android:layout_marginTop="200dp"
+            android:backgroundTint="@color/darkGrey"
+            android:text="Back"
+            app:cornerRadius="@dimen/s" />
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>
+
+

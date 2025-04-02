@@ -4,6 +4,7 @@ import com.dydrian.mob22.data.model.Note
 import kotlinx.coroutines.flow.Flow
 
 interface NoteRepo {
-    suspend fun getNotes(): Flow<List<Note>>
+    fun getNotes(): Flow<List<Note>>
     suspend fun getNoteById(id: String): Note?
+    suspend fun addNote(note: Note)
 }
