@@ -10,6 +10,7 @@ import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.tasks.await
 
 class NoteRepoFirestoreImpl(
     private val db: FirebaseFirestore = Firebase.firestore,
@@ -20,6 +21,7 @@ class NoteRepoFirestoreImpl(
             ?: throw CustomException("No valid user found")
         return db.collection("users/$uid/notes")
     }
+
 
     override fun getNotes(): Flow<List<Note>> = callbackFlow {
         val listener = getCollectionRef().addSnapshotListener { value, error ->
@@ -36,5 +38,15 @@ class NoteRepoFirestoreImpl(
             trySend(notes)
         }
         awaitClose { listener.remove() }
+    }
+
+    override suspend fun getNoteById(id: String): Note? {
+        val snapshot = getCollectionRef().document(id).get().await()
+        return snapshot.toObject(Note::class.java)?.copy(id = snapshot.id)
+    }
+
+    override suspend fun addNote(note: Note) {
+        val docRef = getCollectionRef().document()
+        docRef.set(note.copy(id = docRef.id)).await()
     }
 }

@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,6 +21,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.dydrian.mob22.R
+import com.dydrian.mob22.data.model.Note
 import com.dydrian.mob22.databinding.FragmentHomeBinding
 import com.dydrian.mob22.ui.adapter.NoteAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,16 +46,22 @@ class HomeFragment : Fragment() {
         setupAdapter()
         observerState()
 
+
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 adapter.setNotes(notes = state.notes)
             }
         }
+        binding.fabAdd.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.homeToAddNote())
+        }
 
-        Glide.with(binding.ivProfile)
+        Glide.with(this)
             .load(viewModel.getProgileUrl())
+            .placeholder(R.drawable.note_icon)
+            .error(R.drawable.note_icon)
             .apply(RequestOptions.bitmapTransform(RoundedCorners(32)))
-            .into(binding.ivProfile)
+            .into(binding.ivProfile);
         // using bringToFront() to ensure that the ImageView appears above other views
         // (like the RecyclerView or FloatingActionButton), so it can receive touch events and be clickable.
         binding.ivProfile.bringToFront()
@@ -68,7 +74,13 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 adapter.setNotes(state.notes)
-                binding.tvEmpty.isVisible = state.notes.isEmpty()
+                if (state.notes.isEmpty()) {
+                    binding.rvNotes.visibility = View.GONE
+                    binding.emptyStateContainer.visibility = View.VISIBLE
+                } else {
+                    binding.rvNotes.visibility = View.VISIBLE
+                    binding.emptyStateContainer.visibility = View.GONE
+                }
             }
         }
     }
@@ -81,7 +93,17 @@ class HomeFragment : Fragment() {
                 2,
                 StaggeredGridLayoutManager.VERTICAL
             )
+        adapter.listener = object : NoteAdapter.Listener {
+            override fun onClickItem(item: Note) {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
+                        item.id!!
+                    )
+                )
+            }
+        }
     }
+
 
     /**
      * Logout dialog

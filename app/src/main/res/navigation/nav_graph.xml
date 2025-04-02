@@ -5,7 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/authFragment">
 
-
     <action
         android:id="@+id/action_loginFragment"
         app:destination="@id/authFragment"
@@ -19,10 +18,6 @@
         app:popUpToInclusive="true" />
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.dydrian.mob22.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
-    <fragment
         android:id="@+id/authFragment"
         android:name="com.dydrian.mob22.ui.auth.AuthFragment"
         tools:layout="@layout/fragment_auth">
@@ -30,4 +25,33 @@
             android:id="@+id/action_login_to_home"
             app:destination="@id/homeFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.dydrian.mob22.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/home_to_addNote"
+            app:destination="@id/addNoteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.dydrian.mob22.ui.details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="noteId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.dydrian.mob22.ui.addNote.AddNoteFragment"
+        android:label="fragment_add_note"
+        tools:layout="@layout/fragment_add_note" />
+
 </navigation>

@@ -25,13 +25,12 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-            <!--                        android:hint="@string/lorem_ipsum"-->
 
             <TextView
                 android:id="@+id/tvDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
         </LinearLayout>
-        <!--                        android:hint="@string/lorem_ipsum_dolor_sit_amet" -->
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
