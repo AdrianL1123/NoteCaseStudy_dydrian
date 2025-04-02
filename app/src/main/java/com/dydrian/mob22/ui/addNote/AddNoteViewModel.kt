@@ -23,6 +23,7 @@ class AddNoteViewModel @Inject constructor(
 
     fun handleIntent(intent: AddNoteIntent) {
         when (intent) {
+            // when user "intents" to add new note
             is AddNoteIntent.Add -> addNote(
                 intent.title,
                 intent.description,
@@ -31,6 +32,7 @@ class AddNoteViewModel @Inject constructor(
         }
     }
 
+
     private fun addNote(title: String, description: String, color: Int) {
         viewModelScope.launch {
             try {
@@ -38,6 +40,7 @@ class AddNoteViewModel @Inject constructor(
                 require(description.isNotEmpty()) { "Description cannot be empty" }
 
                 val note = Note(title = title, desc = description, color = color)
+                // add note to the database
                 repo.addNote(note)
 
                 _state.value = AddNoteState.Success("Note added successfully")

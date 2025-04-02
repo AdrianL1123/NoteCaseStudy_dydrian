@@ -41,7 +41,7 @@ class AddNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupColorSelection()
-        setupObservers()
+        observerHandler()
 
         binding.btnAdd.setOnClickListener {
             val title = binding.etTitle.text.toString()
@@ -60,8 +60,9 @@ class AddNoteFragment : Fragment() {
         binding.btnOrange.setOnClickListener { colorSelectionHandler(it, R.color.lightOrange) }
     }
 
-    private fun colorSelectionHandler(view: View, colorRes: Int) {
-        val color = ContextCompat.getColor(requireContext(), colorRes)
+    private fun colorSelectionHandler(view: View, colorId: Int) {
+        // Get the color from the resources
+        val color = ContextCompat.getColor(requireContext(), colorId)
 
         resetSelectionState()
         saveDefaultState(view)
@@ -71,16 +72,22 @@ class AddNoteFragment : Fragment() {
             setStroke(6, ContextCompat.getColor(requireContext(), R.color.black))
             cornerRadius = 8f
         }
-        view.background = drawableBorder
+        view.background = drawableBorder // applies the border to the selected color box
         viewModel.setSelectedColor(color)
 
+        // If the view contains a card view, update its background color
         val cardView = view.findViewById<MaterialCardView>(R.id.mcvNote)
         cardView?.setCardBackgroundColor(color)
+
+        // checks which color box is being selected
         selectedColorBox = view
     }
 
     private fun saveDefaultState(view: View) {
+
+        // saves bg color as default if not saved yet.
         if (!defaultBgColors.contains(view)) {
+            // saves bg color selected from view's color as default, transparent if not set.
             defaultBgColors[view] = (view.background as? GradientDrawable)?.color?.defaultColor ?: Color.TRANSPARENT
         }
         if (!defaultBgBorders.contains(view)) {
@@ -89,29 +96,37 @@ class AddNoteFragment : Fragment() {
     }
 
     private fun resetSelectionState() {
+        // check if the selected color box exist
         selectedColorBox?.let { view ->
             defaultBgColors[view]?.let { defaultColor ->
+                // Restore its original background color
                 view.setBackgroundColor(defaultColor)
             }
             defaultBgBorders[view]?.let { defaultBorder ->
+                // Restore its original background drawable (right now it's only a border)
                 view.background = defaultBorder
             }
         }
+        // Clear the reference to the previously selected color box
         selectedColorBox = null
     }
 
-    private fun setupObservers() {
+    private fun observerHandler() {
         lifecycleScope.launch {
-            viewModel.state.collectLatest { state ->
+            viewModel.state.collect { state ->
                 when (state) {
                     is AddNoteState.Success -> {
-                        Toast.makeText(requireContext(), "Note added successfully!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),"Note added successfully!", Toast.LENGTH_SHORT
+                        ).show()
                         findNavController().popBackStack()
                     }
                     is AddNoteState.Error -> {
-                        Toast.makeText(requireContext(), state.msg, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(), state.msg, Toast.LENGTH_SHORT
+                        ).show()
                     }
-                    else -> {} // Idle state, do nothing
+                    else -> {}
                 }
             }
         }

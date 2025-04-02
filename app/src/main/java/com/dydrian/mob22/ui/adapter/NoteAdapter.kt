@@ -40,6 +40,7 @@ class NoteAdapter(
             binding.tvTitle.text = note.title
             binding.tvDesc.text = note.desc
 
+            // Applies the note's color to the MaterialCardView background
             binding.mcvNote.setCardBackgroundColor(note.color)
         }
     }
