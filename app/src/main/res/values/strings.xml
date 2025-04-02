@@ -23,4 +23,5 @@
     <string name="google_signIn_failed">Google Sign-In failed.</string>
     <string name="no_valid_user_found">No valid user found</string>
     <string name="login_failed">Login failed</string>
+    <string name="logout_confirmation">Are you sure you want to log out of account %1$s ? </string>
 </resources>

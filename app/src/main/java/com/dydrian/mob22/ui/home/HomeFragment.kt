@@ -109,7 +109,6 @@ class HomeFragment : Fragment() {
     /**
      * Logout dialog
      */
-    @SuppressLint("SetTextI18n")
     private fun showLogoutDialog() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -122,7 +121,8 @@ class HomeFragment : Fragment() {
         val btnLogout = dialog.findViewById<Button>(R.id.btnLogout)
 
         val user = viewModel.getUserInfo()
-        tvLogoutMessage.text = "Are you sure you want to log out?\n${user?.email ?: ""}"
+        val userEmail = user?.email ?: ""
+        tvLogoutMessage.text = getString(R.string.logout_confirmation, userEmail)
 
         btnCancel.setOnClickListener { dialog.dismiss() }
 
