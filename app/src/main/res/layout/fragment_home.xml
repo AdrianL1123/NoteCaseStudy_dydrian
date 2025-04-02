@@ -23,7 +23,6 @@
             android:gravity="center"
             android:textSize="18sp"
             android:textStyle="italic" />
-        <!--            android:text="@string/no_tasks_added"-->
     </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
