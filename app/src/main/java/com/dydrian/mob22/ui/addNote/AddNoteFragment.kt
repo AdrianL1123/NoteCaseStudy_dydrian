@@ -88,7 +88,8 @@ class AddNoteFragment : Fragment() {
         // saves bg color as default if not saved yet.
         if (!defaultBgColors.contains(view)) {
             // saves bg color selected from view's color as default, transparent if not set.
-            defaultBgColors[view] = (view.background as? GradientDrawable)?.color?.defaultColor ?: Color.TRANSPARENT
+            defaultBgColors[view] =
+                (view.background as? GradientDrawable)?.color?.defaultColor ?: Color.TRANSPARENT
         }
         if (!defaultBgBorders.contains(view)) {
             defaultBgBorders[view] = view.background
@@ -117,15 +118,17 @@ class AddNoteFragment : Fragment() {
                 when (state) {
                     is AddNoteState.Success -> {
                         Toast.makeText(
-                            requireContext(),"Note added successfully!", Toast.LENGTH_SHORT
+                            requireContext(), "Note added successfully!", Toast.LENGTH_SHORT
                         ).show()
                         findNavController().popBackStack()
                     }
+
                     is AddNoteState.Error -> {
                         Toast.makeText(
                             requireContext(), state.msg, Toast.LENGTH_SHORT
                         ).show()
                     }
+
                     else -> {}
                 }
             }

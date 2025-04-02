@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.dydrian.mob22.data.model.Note
 import com.dydrian.mob22.databinding.FragmentHomeBinding
 import com.dydrian.mob22.ui.adapter.NoteAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +34,6 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         observerState()
-
 
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -60,8 +60,17 @@ class HomeFragment : Fragment() {
         binding.rvNotes.adapter = adapter
         binding.rvNotes.layoutManager =
             StaggeredGridLayoutManager(
-                2,
-                StaggeredGridLayoutManager.VERTICAL
+                2, StaggeredGridLayoutManager.VERTICAL
             )
+        adapter.listener = object : NoteAdapter.Listener {
+            override fun onClickItem(item: Note) {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
+                        item.id!!
+                    )
+                )
+            }
+
+        }
     }
 }

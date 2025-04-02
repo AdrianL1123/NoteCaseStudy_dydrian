@@ -34,9 +34,13 @@ class NoteRepoFirestoreImpl(
         awaitClose { listener.remove() }
     }
 
+    override suspend fun getNoteById(id: String): Note? {
+        val snapshot = getCollectionRef().document(id).get().await()
+        return snapshot.toObject(Note::class.java)?.copy(id = snapshot.id)
+    }
+
     override suspend fun addNote(note: Note) {
         val docRef = getCollectionRef().document()
         docRef.set(note.copy(id = docRef.id)).await()
     }
-
 }

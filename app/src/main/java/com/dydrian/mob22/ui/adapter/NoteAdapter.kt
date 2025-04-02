@@ -1,6 +1,5 @@
 package com.dydrian.mob22.ui.adapter
 
-import android.location.GnssAntennaInfo.Listener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -39,9 +38,14 @@ class NoteAdapter(
         fun bind(note: Note) {
             binding.tvTitle.text = note.title
             binding.tvDesc.text = note.desc
-
-            // Applies the note's color to the MaterialCardView background
             binding.mcvNote.setCardBackgroundColor(note.color)
+            binding.mcvNote.setOnClickListener {
+                listener?.onClickItem(note)
+            }
         }
+    }
+
+    interface Listener {
+        fun onClickItem(item: Note)
     }
 }
