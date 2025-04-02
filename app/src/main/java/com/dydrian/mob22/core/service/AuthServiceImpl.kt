@@ -2,9 +2,11 @@ package com.dydrian.mob22.core.service
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
+import com.dydrian.mob22.R
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -26,11 +28,17 @@ class AuthServiceImpl(
                 val authResult = firebaseAuth.signInWithCredential(credential).await()
                 authResult.user != null
             } catch (e: GetCredentialException) {
-                Log.d("debugging", "Google Sign-In failed.", e)
-                false
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, R.string.google_signIn_failed, Toast.LENGTH_SHORT)
+                        .show()
+                    false
+                }
             } catch (e: Exception) {
-                Log.d("debugging", "Something went wrong", e)
-                false
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, R.string.something_went_wrong, Toast.LENGTH_SHORT)
+                        .show()
+                    false
+                }
             }
         }
     }
@@ -60,11 +68,12 @@ class AuthServiceImpl(
 
         return try {
             val result = credentialManager.getCredential(context, request)
-            Log.d("debugging", result.credential.data.toString())
             result.credential.data.getString("com.google.android.libraries.identity.googleid.BUNDLE_KEY_ID_TOKEN")
         } catch (e: Exception) {
-            Log.e("authService", "Error fetching credentials", e)
-            null
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, R.string.auth_credentials_error, Toast.LENGTH_SHORT).show()
+                null
+            }
         }
     }
 }

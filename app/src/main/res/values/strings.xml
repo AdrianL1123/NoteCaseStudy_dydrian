@@ -18,4 +18,7 @@
     <string name="back_btn">Back</string>
     <string name="my_notes">My Notes</string>
     <string name="no_notes_available">No Notes Available</string>
+    <string name="auth_credentials_error">Error fetching credentials</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="google_signIn_failed">Google Sign-In failed.</string>
 </resources>
