@@ -1,6 +1,5 @@
 package com.dydrian.mob22.data.repo
 
-import android.util.Log
 import com.dydrian.mob22.data.model.Note
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.CollectionReference
@@ -9,6 +8,7 @@ import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.tasks.await
 
 class NoteRepoFirestoreImpl(
     private val db: FirebaseFirestore = Firebase.firestore
@@ -33,4 +33,10 @@ class NoteRepoFirestoreImpl(
         }
         awaitClose { listener.remove() }
     }
+
+    override suspend fun addNote(note: Note) {
+        val docRef = getCollectionRef().document()
+        docRef.set(note.copy(id = docRef.id)).await()
+    }
+
 }

@@ -9,7 +9,16 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.dydrian.mob22.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/home_to_addNote"
+            app:destination="@id/addNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.dydrian.mob22.ui.addNote.AddNoteFragment"
+        android:label="fragment_add_note"
+        tools:layout="@layout/fragment_add_note" />
     <!-- TODO  -->
     <!--    <fragment-->
     <!--        android:id="@+id/loginFragment"-->

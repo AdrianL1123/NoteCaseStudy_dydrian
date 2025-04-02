@@ -39,6 +39,8 @@ class NoteAdapter(
         fun bind(note: Note) {
             binding.tvTitle.text = note.title
             binding.tvDesc.text = note.desc
+
+            binding.mcvNote.setCardBackgroundColor(note.color)
         }
     }
 }

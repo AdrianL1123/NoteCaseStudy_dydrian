@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.dydrian.mob22.databinding.FragmentHomeBinding
 import com.dydrian.mob22.ui.adapter.NoteAdapter
@@ -38,6 +39,10 @@ class HomeFragment : Fragment() {
             viewModel.state.collect { state ->
                 adapter.setNotes(notes = state.notes)
             }
+        }
+
+        binding.fabAdd.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.homeToAddNote())
         }
     }
 
