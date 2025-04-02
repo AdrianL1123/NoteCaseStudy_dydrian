@@ -3,20 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
-    <!--  TODO change start destination to loginFragment  -->
+    app:startDestination="@id/authFragment">
+
+
+    <action
+        android:id="@+id/action_loginFragment"
+        app:destination="@id/authFragment"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_homeFragment"
+        app:destination="@id/homeFragment"
+        app:popUpTo="@id/authFragment"
+        app:popUpToInclusive="true" />
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.dydrian.mob22.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home" />
-    <!-- TODO  -->
-    <!--    <fragment-->
-    <!--        android:id="@+id/loginFragment"-->
-    <!--        android:name="com.dydrian.mob22.view.LoginFragment"-->
-    <!--        tools:layout="@layout/fragment_login">-->
-    <!--        <action-->
-    <!--            android:id="@+id/action_login_to_home"-->
-    <!--            app:destination="@id/homeFragment" />-->
-    <!--    </fragment>-->
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.dydrian.mob22.ui.auth.AuthFragment"
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

@@ -1,14 +1,27 @@
 package com.dydrian.mob22.ui.home
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
+import com.dydrian.mob22.R
 import com.dydrian.mob22.databinding.FragmentHomeBinding
 import com.dydrian.mob22.ui.adapter.NoteAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,11 +46,21 @@ class HomeFragment : Fragment() {
         setupAdapter()
         observerState()
 
-
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 adapter.setNotes(notes = state.notes)
             }
+        }
+
+        Glide.with(binding.ivProfile)
+            .load(viewModel.getProgileUrl())
+            .apply(RequestOptions.bitmapTransform(RoundedCorners(32)))
+            .into(binding.ivProfile)
+        // using bringToFront() to ensure that the ImageView appears above other views
+        // (like the RecyclerView or FloatingActionButton), so it can receive touch events and be clickable.
+        binding.ivProfile.bringToFront()
+        binding.ivProfile.setOnClickListener {
+            showLogoutDialog()
         }
     }
 
@@ -58,5 +81,32 @@ class HomeFragment : Fragment() {
                 2,
                 StaggeredGridLayoutManager.VERTICAL
             )
+    }
+
+    /**
+     * Logout dialog
+     */
+    private fun showLogoutDialog() {
+        val dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setCancelable(true)
+        dialog.setContentView(R.layout.profile_alert_dialog)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val tvLogoutMessage = dialog.findViewById<TextView>(R.id.tvLogoutMessage)
+        val btnCancel = dialog.findViewById<Button>(R.id.btnCancel)
+        val btnLogout = dialog.findViewById<Button>(R.id.btnLogout)
+
+        val user = viewModel.getUserInfo()
+        tvLogoutMessage.text = "Are you sure you want to log out?\n${user?.email ?: ""}"
+
+        btnCancel.setOnClickListener { dialog.dismiss() }
+
+        btnLogout.setOnClickListener {
+            viewModel.logout()
+            findNavController().navigate(HomeFragmentDirections.actionLoginFragment())
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }
