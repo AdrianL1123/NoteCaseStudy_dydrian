@@ -11,15 +11,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor
-    (private val repo: NoteRepo) :
-    ViewModel() {
+class DetailsViewModel @Inject constructor(
+    private val repo: NoteRepo
+): ViewModel() {
     private val _state = MutableStateFlow(DetailState())
     val state = _state.asStateFlow()
 
     fun handleIntent(intent: DetailIntent) {
         when (intent) {
             is DetailIntent.GetNoteById -> getNoteById(intent.id)
+            is DetailIntent.DeleteNote -> deleteNote(intent.id)
         }
     }
 
@@ -30,13 +31,22 @@ class DetailsViewModel @Inject constructor
             _state.value = DetailState(note = note)
         }
     }
+
+    private fun deleteNote(id: String) {
+        viewModelScope.launch {
+            repo.deleteNote(id)
+            _state.value = DetailState(isDeleted = true)
+        }
+    }
 }
 
 sealed class DetailIntent {
     data class GetNoteById(val id: String) : DetailIntent()
+    data class DeleteNote(val id: String) : DetailIntent()
 }
 
 data class DetailState(
     val note: Note? = null,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val isDeleted: Boolean = false
 )

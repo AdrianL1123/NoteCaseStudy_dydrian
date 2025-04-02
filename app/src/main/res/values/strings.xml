@@ -16,4 +16,9 @@
     <string name="edit_btn">Edit</string>
     <string name="delete_btn">Delete</string>
     <string name="back_btn">Back</string>
+    <string name="delete_prompt">Are you sure?</string>
+    <string name="delete_text">This note will be deleted.\nAction is not be reversible !</string>
+    <string name="cancel_btn">CANCEL</string>
+    <string name="cfm_delete">DELETE</string>
+    <string name="delete_successfully">Note deleted successfully!</string>
 </resources>
