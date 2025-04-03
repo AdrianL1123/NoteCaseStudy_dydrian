@@ -67,7 +67,7 @@ class BottomSheetDialogFragment(
             Toast.makeText(requireContext(), R.string.delete_successfully, Toast.LENGTH_SHORT)
                 .show()
             dialog.dismiss()
-            this.dismiss()
+            this.dismiss() // root dialog to dismiss
         }
         dialog.show()
     }
