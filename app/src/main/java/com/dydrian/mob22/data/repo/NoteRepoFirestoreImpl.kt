@@ -1,5 +1,8 @@
 package com.dydrian.mob22.data.repo
 
+import com.dydrian.mob22.R
+import com.dydrian.mob22.core.CustomException
+import com.dydrian.mob22.core.service.AuthService
 import com.dydrian.mob22.data.model.Note
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.CollectionReference
@@ -11,11 +14,15 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
 class NoteRepoFirestoreImpl(
-    private val db: FirebaseFirestore = Firebase.firestore
+    private val db: FirebaseFirestore = Firebase.firestore,
+    private val authService: AuthService
 ) : NoteRepo {
     private fun getCollectionRef(): CollectionReference {
-        return db.collection("notes")
+        val uid = authService.getUid()
+            ?: throw CustomException(R.string.no_valid_user_found.toString())
+        return db.collection("users/$uid/notes")
     }
+
 
     override fun getNotes(): Flow<List<Note>> = callbackFlow {
         val listener = getCollectionRef().addSnapshotListener { value, error ->

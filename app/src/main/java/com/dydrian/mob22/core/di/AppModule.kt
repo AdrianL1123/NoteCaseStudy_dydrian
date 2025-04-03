@@ -1,5 +1,7 @@
 package com.dydrian.mob22.core.di
 
+import com.dydrian.mob22.core.service.AuthService
+import com.dydrian.mob22.core.service.AuthServiceImpl
 import com.dydrian.mob22.data.repo.NoteRepo
 import com.dydrian.mob22.data.repo.NoteRepoFirestoreImpl
 import dagger.Module
@@ -13,7 +15,13 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideTaskRepo(): NoteRepo {
-        return NoteRepoFirestoreImpl()
+    fun provideTaskRepo(authService: AuthService): NoteRepo {
+        return NoteRepoFirestoreImpl(authService = authService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthService(): AuthService {
+        return AuthServiceImpl()
     }
 }

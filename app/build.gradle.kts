@@ -23,6 +23,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("default") {
+            keyAlias = "noteApp"
+            keyPassword = "123123123"
+            storePassword = "123123123"
+            storeFile = file("$projectDir/keystore.jks")
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -59,6 +68,10 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -66,4 +79,6 @@ dependencies {
     // https://developer.android.com/training/dependency-injection/hilt-android
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }
