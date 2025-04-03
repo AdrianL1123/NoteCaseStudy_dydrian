@@ -9,18 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
-import androidx.fragment.app.setFragmentResult
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dydrian.mob22.R
 import com.dydrian.mob22.databinding.FragmentBtmSheetDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class BottomSheetDialogFragment(
-    private val id: String,
+    private val noteId: String,
 ) : BottomSheetDialogFragment() {
 
     private val viewModel: HomeViewModel by viewModels()
@@ -38,11 +37,16 @@ class BottomSheetDialogFragment(
         super.onViewCreated(view, savedInstanceState)
 
         binding.edit.setOnClickListener {
-            TODO("Waiting for edit note fragment to be implemented")
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToEditNoteFragment(
+                    noteId
+                )
+            )
+            dialog?.dismiss()
         }
 
         binding.delete.setOnClickListener {
-            showDeleteDialogBox(id)
+            showDeleteDialogBox(noteId)
         }
     }
 
@@ -59,9 +63,11 @@ class BottomSheetDialogFragment(
         btnCancel.setOnClickListener { dialog.dismiss() }
 
         btnDelete.setOnClickListener {
-            viewModel.deleteNote(id) // Calls ViewModel function to delete the note
-            dialog.dismiss() // Closes the dialog
-            this.dismiss() // Also dismisses the BottomSheetDialogFragment (if called from one)
+            viewModel.deleteNote(id)
+            Toast.makeText(requireContext(), R.string.delete_successfully, Toast.LENGTH_SHORT)
+                .show()
+            dialog.dismiss()
+            this.dismiss()
         }
         dialog.show()
     }

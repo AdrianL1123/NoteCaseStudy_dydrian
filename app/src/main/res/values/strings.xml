@@ -2,7 +2,8 @@
     <string name="app_name">MOB 2.2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="success">Note successfully added !</string>
+    <string name="success_add">Note successfully added !</string>
+    <string name="success_update">Note successfully updated !</string>
     <string name="error">An error has occurred</string>
     <string name="empty_title">"Title cannot be empty"</string>
     <string name="empty_desc">Description cannot be empty</string>
@@ -29,4 +30,7 @@
     <string name="no_valid_user_found">No valid user found</string>
     <string name="login_failed">Login failed</string>
     <string name="logout_confirmation">Are you sure you want to log out of account %1$s ? </string>
+    <string name="note_not_found">Note not found</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="btnEdit">Edit</string>
 </resources>

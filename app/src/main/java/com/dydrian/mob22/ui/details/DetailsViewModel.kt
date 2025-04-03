@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val repo: NoteRepo
-): ViewModel() {
+) : ViewModel() {
     private val _state = MutableStateFlow(DetailState())
     val state = _state.asStateFlow()
 
@@ -48,5 +48,5 @@ sealed class DetailIntent {
 data class DetailState(
     val note: Note? = null,
     val isLoading: Boolean = false,
-    val isDeleted: Boolean = false
+    val isDeleted: Boolean = false,
 )
