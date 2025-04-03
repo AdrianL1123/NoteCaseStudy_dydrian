@@ -1,15 +1,19 @@
 package com.dydrian.mob22.ui.details
 
+import android.app.AlertDialog
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.dydrian.mob22.R
 import com.dydrian.mob22.databinding.FragmentDetailsBinding
+import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -38,6 +42,12 @@ class DetailsFragment : Fragment() {
                 binding.contentLayout.visibility =
                     if (state.note != null) View.VISIBLE else View.GONE
 
+                if (state.isDeleted) {
+                    Toast.makeText(requireContext(),
+                        getString(R.string.delete_successfully), Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack() // Navigate back after deletion
+                }
+
                 state.note?.let { note ->
                     binding.tvTitle.text = note.title
                     binding.tvDesc.text = note.desc
@@ -46,8 +56,30 @@ class DetailsFragment : Fragment() {
                 binding.btnBack.setOnClickListener {
                     findNavController().popBackStack()
                 }
+                binding.btnDelete.setOnClickListener {
+                    showDeleteDialog(noteId)
+                }
             }
         }
-
     }
+
+    private fun showDeleteDialog(noteId: String) {
+        val dialogView = layoutInflater.inflate(R.layout.delete_dialog, null)
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(true)
+            .create()
+
+        dialogView.findViewById<MaterialButton>(R.id.btnCancel).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialogView.findViewById<MaterialButton>(R.id.btnDelete).setOnClickListener {
+            viewModel.handleIntent(DetailIntent.DeleteNote(noteId))
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
 }

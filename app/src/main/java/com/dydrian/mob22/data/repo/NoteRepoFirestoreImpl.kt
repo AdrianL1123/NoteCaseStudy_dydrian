@@ -50,4 +50,8 @@ class NoteRepoFirestoreImpl(
         val docRef = getCollectionRef().document()
         docRef.set(note.copy(id = docRef.id)).await()
     }
+
+    override suspend fun deleteNote(id: String) {
+        getCollectionRef().document(id).delete().await()
+    }
 }
