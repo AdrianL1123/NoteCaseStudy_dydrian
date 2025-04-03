@@ -1,18 +1,15 @@
 package com.dydrian.mob22.ui.home
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -58,7 +55,7 @@ class HomeFragment : Fragment() {
         }
 
         Glide.with(this)
-            .load(viewModel.getProgileUrl())
+            .load(viewModel.getProfileUrl())
             .placeholder(R.drawable.note_icon)
             .error(R.drawable.note_icon)
             .apply(RequestOptions.bitmapTransform(RoundedCorners(32)))

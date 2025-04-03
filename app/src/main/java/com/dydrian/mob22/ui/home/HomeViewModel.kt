@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getProgileUrl(): Uri? {
+    fun getProfileUrl(): Uri? {
         return authService.getLoggedInUser()?.photoUrl
     }
 
