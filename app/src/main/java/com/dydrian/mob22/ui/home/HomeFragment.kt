@@ -94,11 +94,18 @@ class HomeFragment : Fragment() {
         adapter.listener = object : NoteAdapter.Listener {
             override fun onClickItem(item: Note) {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
+                    HomeFragmentDirections.homeToDetails(
                         item.id!!
                     )
                 )
             }
+
+            override fun onLongClickItem(item: Note): Boolean {
+                BottomSheetDialogFragment(item.id!!)
+                    .show(parentFragmentManager, "Bottom Sheet Dialog")
+                return true
+            }
+
         }
     }
 

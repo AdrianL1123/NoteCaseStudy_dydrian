@@ -42,10 +42,17 @@ class NoteAdapter(
             binding.mcvNote.setOnClickListener {
                 listener?.onClickItem(note)
             }
+
+            binding.mcvNote.setOnLongClickListener {
+                // If listener is null, it returns false to avoid NullPointerException.
+                // cuz long click is boolean
+                listener?.onLongClickItem(note)?: false
+            }
         }
     }
 
     interface Listener {
         fun onClickItem(item: Note)
+        fun onLongClickItem(item: Note) : Boolean
     }
 }

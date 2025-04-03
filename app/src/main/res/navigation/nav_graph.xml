@@ -31,7 +31,7 @@
         android:name="com.dydrian.mob22.ui.home.HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_detailsFragment"
+            android:id="@+id/home_to_details"
             app:destination="@id/detailsFragment" />
         <action
             android:id="@+id/home_to_addNote"
