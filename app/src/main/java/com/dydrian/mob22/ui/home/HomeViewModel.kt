@@ -1,9 +1,12 @@
 package com.dydrian.mob22.ui.home
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dydrian.mob22.core.service.AuthService
 import com.dydrian.mob22.data.model.Note
 import com.dydrian.mob22.data.repo.NoteRepo
+import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repo: NoteRepo
+    private val repo: NoteRepo,
+    private val authService: AuthService
 ) : ViewModel() {
     private val _state = MutableStateFlow(HomeState())
     val state = _state.asStateFlow()
@@ -26,6 +30,18 @@ class HomeViewModel @Inject constructor(
         when (intent) {
             HomeIntent.GetNotes -> getNotes()
         }
+    }
+
+    fun getProfileUrl(): Uri? {
+        return authService.getLoggedInUser()?.photoUrl
+    }
+
+    fun getUserInfo(): FirebaseUser? {
+        return authService.getLoggedInUser()
+    }
+
+    fun logout() {
+        return authService.logout()
     }
 
     private fun getNotes() {
