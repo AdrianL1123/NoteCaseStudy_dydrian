@@ -54,4 +54,8 @@ class NoteRepoFirestoreImpl(
     override suspend fun deleteNote(id: String) {
         getCollectionRef().document(id).delete().await()
     }
+
+    override suspend fun updateNote(note: Note) {
+        getCollectionRef().document(note.id!!).set(note).await()
+    }
 }
