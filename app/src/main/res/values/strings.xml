@@ -33,4 +33,5 @@
     <string name="note_not_found">Note not found</string>
     <string name="edit_note">Edit Note</string>
     <string name="btnEdit">Edit</string>
+    <string name="search_note">Search Note...</string>
 </resources>
