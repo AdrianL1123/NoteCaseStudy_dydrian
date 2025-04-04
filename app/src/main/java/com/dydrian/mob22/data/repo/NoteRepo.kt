@@ -8,4 +8,5 @@ interface NoteRepo {
     suspend fun getNoteById(id: String): Note?
     suspend fun addNote(note: Note)
     suspend fun deleteNote(id: String)
+    suspend fun updateNote(note: Note)
 }

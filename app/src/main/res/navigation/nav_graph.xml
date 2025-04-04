@@ -46,12 +46,24 @@
         <argument
             android:name="noteId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailsFragment_to_editNoteFragment"
+            app:destination="@id/editNoteFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="com.dydrian.mob22.ui.addNote.AddNoteFragment"
+        android:name="com.dydrian.mob22.ui.manageNote.addNote.AddNoteFragment"
         android:label="fragment_add_note"
-        tools:layout="@layout/fragment_add_note" />
+        tools:layout="@layout/fragment_manage_note" />
+    <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.dydrian.mob22.ui.manageNote.editNote.EditNoteFragment"
+        android:label="EditNoteFragment"
+        tools:layout="@layout/fragment_manage_note">
+        <argument
+            android:name="noteId"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
