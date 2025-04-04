@@ -10,7 +10,10 @@ import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,6 +25,8 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = MutableStateFlow(HomeState())
     val state = _state.asStateFlow()
+
+    private val _query = MutableStateFlow("")
 
     init {
         getNotes()
@@ -43,6 +48,21 @@ class HomeViewModel @Inject constructor(
 
     fun logout() {
         return authService.logout()
+    }
+
+    val filteredNotes = combine(_state, _query) { state, query ->
+        if (query.isBlank()) {
+            state.notes
+        }
+        state.notes.filter { it.title.contains(query, ignoreCase = true) }
+    }.stateIn(
+        viewModelScope,
+        SharingStarted.WhileSubscribed(5000),
+        emptyList()
+    )
+
+    fun setQuery(query: String) {
+        _query.value = query
     }
 
     private fun getNotes() {
@@ -67,8 +87,8 @@ sealed class HomeIntent {
 }
 
 data class HomeState(
-    val notes: List<Note> = emptyList()
+    val notes: List<Note> = emptyList(),
+    val query: String = ""
 )
-
 
 

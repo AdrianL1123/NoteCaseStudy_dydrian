@@ -43,11 +43,17 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         observerState()
+        setupSearchView()
 
 
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 adapter.setNotes(notes = state.notes)
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.filteredNotes.collect { notes ->
+                adapter.setNotes(notes)
             }
         }
         binding.fabAdd.setOnClickListener {
@@ -68,6 +74,34 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupSearchView() {
+        // don't need to tap on the search icon to trigger input
+        binding.searchView.setIconifiedByDefault(false)
+        binding.searchView.queryHint = getString(R.string.search_note)
+
+        // customizing searchView
+        // Source: https://stackoverflow.com/a/29026547/29558271
+        val searchEditText = binding.searchView.findViewById<android.widget.EditText>(
+            androidx.appcompat.R.id.search_src_text
+        )
+
+        searchEditText.hint = getString(R.string.search_note)
+        searchEditText.setHintTextColor(Color.GRAY)
+        searchEditText.setTextColor(Color.BLACK)
+
+        binding.searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(query: String): Boolean {
+                viewModel.setQuery(query)
+                return true
+            }
+        })
+    }
+
     private fun observerState() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
@@ -75,9 +109,11 @@ class HomeFragment : Fragment() {
                 if (state.notes.isEmpty()) {
                     binding.rvNotes.visibility = View.GONE
                     binding.emptyStateContainer.visibility = View.VISIBLE
+                    binding.searchView.visibility = View.GONE
                 } else {
                     binding.rvNotes.visibility = View.VISIBLE
                     binding.emptyStateContainer.visibility = View.GONE
+                    binding.searchView.visibility = View.VISIBLE
                 }
             }
         }

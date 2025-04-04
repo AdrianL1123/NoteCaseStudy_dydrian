@@ -17,4 +17,5 @@
     <dimen name="xxxxl">40dp</dimen>
     <dimen name="xxxxxl">48dp</dimen>
     <dimen name="xxxxxxl">64dp</dimen>
+    <dimen name="max">75dp</dimen>
 </resources>
