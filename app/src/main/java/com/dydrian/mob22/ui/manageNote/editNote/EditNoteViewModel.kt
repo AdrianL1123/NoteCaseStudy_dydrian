@@ -35,14 +35,16 @@ class EditNoteViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val existingNote = repo.getNoteById(noteId)
-                existingNote?.let {
-                    _note.value = it
-                    selectedColor.value = it.color
-                } ?: run {
+
+                if (existingNote != null) {
+                    _note.value = existingNote
+                    selectedColor.value = existingNote.color
+                } else {
                     _state.value = EditNoteState.Error(R.string.note_not_found.toString())
                 }
+
             } catch (e: Exception) {
-                _state.value = EditNoteState.Error(e.message ?: (R.string.error.toString()))
+                _state.value = EditNoteState.Error(e.message ?: R.string.error.toString())
             }
         }
     }
