@@ -4,6 +4,9 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
+/**
+ * Note: This will not be used for now
+ */
 abstract class ManageNoteViewModel : ViewModel() {
     protected val _finish = MutableSharedFlow<Unit>()
     val finish = _finish.asSharedFlow()

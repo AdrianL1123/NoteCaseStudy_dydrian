@@ -8,6 +8,7 @@ import com.dydrian.mob22.data.model.Note
 import com.dydrian.mob22.data.repo.NoteRepo
 import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -51,6 +52,14 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+    fun deleteNote(id: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.deleteNote(id)
+            getNotes()
+        }
+    }
+
 }
 
 sealed class HomeIntent {

@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dydrian.mob22.R
+import com.dydrian.mob22.core.showToast
 import com.dydrian.mob22.databinding.FragmentManageNoteBinding
 import com.dydrian.mob22.ui.manageNote.ManageNoteFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,12 +50,12 @@ class AddNoteFragment : ManageNoteFragment() {
             val color = viewModel.selectedColor.value
 
             if (title.isEmpty()) {
-                showToast(R.string.empty_title)
+                showToast(requireContext(), getString(R.string.empty_title))
                 return@setOnClickListener
             }
 
             if (description.isEmpty()) {
-                showToast(R.string.empty_desc)
+                showToast(requireContext(), getString(R.string.empty_desc))
                 return@setOnClickListener
             }
 
@@ -95,21 +96,17 @@ class AddNoteFragment : ManageNoteFragment() {
         selectedColorBox = null
     }
 
-    private fun showToast(messageResId: Int) {
-        Toast.makeText(requireContext(), getString(messageResId), Toast.LENGTH_SHORT).show()
-    }
-
     private fun observeViewModel() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 when (state) {
                     is AddNoteState.Success -> {
-                        showToast(R.string.success_add)
+                        showToast(requireContext(), getString(R.string.success_add))
                         findNavController().popBackStack()
                     }
 
                     is AddNoteState.Error -> {
-                        showToast(R.string.error)
+                        showToast(requireContext(), getString(R.string.error))
                     }
 
                     else -> {}

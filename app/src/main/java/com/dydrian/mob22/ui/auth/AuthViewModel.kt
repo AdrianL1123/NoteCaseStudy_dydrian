@@ -22,7 +22,7 @@ class AuthViewModel @Inject constructor(
 
     fun handleIntent(intent: AuthIntent, context: Context) {
         when (intent) {
-            is AuthIntent.LoginWithGoogle -> loginWithGoogle(context)
+            AuthIntent.LoginWithGoogle -> loginWithGoogle(context)
         }
     }
 
