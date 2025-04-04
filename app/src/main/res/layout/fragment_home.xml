@@ -7,13 +7,11 @@
     android:fitsSystemWindows="true"
     tools:context="com.dydrian.mob22.ui.home.HomeFragment">
 
-    <!-- App Bar with integrated search -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black">
 
-        <!-- Header with title and profile -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +53,6 @@
             app:queryBackground="@android:color/transparent" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Main content area with notes -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
