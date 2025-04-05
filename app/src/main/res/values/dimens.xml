@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Layout dimensions (dp) -->
     <dimen name="zero">0dp</dimen>
     <dimen name="xxxxxs">2dp</dimen>
     <dimen name="xxxxs">4dp</dimen>
@@ -7,9 +8,11 @@
     <dimen name="xxs">8dp</dimen>
     <dimen name="xs">10dp</dimen>
     <dimen name="s">12dp</dimen>
+    <dimen name="sm">14dp</dimen>
     <dimen name="m">16dp</dimen>
     <dimen name="xm">18dp</dimen>
     <dimen name="xxm">20dp</dimen>
+    <dimen name="ml">22dp</dimen>
     <dimen name="l">24dp</dimen>
     <dimen name="xl">28dp</dimen>
     <dimen name="xxl">32dp</dimen>
@@ -18,4 +21,26 @@
     <dimen name="xxxxxl">48dp</dimen>
     <dimen name="xxxxxxl">64dp</dimen>
     <dimen name="max">75dp</dimen>
+
+    <!-- Text sizes (sp) -->
+    <dimen name="text_zero">0sp</dimen>
+    <dimen name="text_xxxxxs">2sp</dimen>
+    <dimen name="text_xxxxs">4sp</dimen>
+    <dimen name="text_xxxs">6sp</dimen>
+    <dimen name="text_xxs">8sp</dimen>
+    <dimen name="text_xs">10sp</dimen>
+    <dimen name="text_s">12sp</dimen>
+    <dimen name="text_sm">14sp</dimen>
+    <dimen name="text_m">16sp</dimen>
+    <dimen name="text_xm">18sp</dimen>
+    <dimen name="text_xxm">20sp</dimen>
+    <dimen name="text_ml">22sp</dimen>
+    <dimen name="text_l">24sp</dimen>
+    <dimen name="text_xl">28sp</dimen>
+    <dimen name="text_xxl">32sp</dimen>
+    <dimen name="text_xxxl">36sp</dimen>
+    <dimen name="text_xxxxl">40sp</dimen>
+    <dimen name="text_xxxxxl">48sp</dimen>
+    <dimen name="text_xxxxxxl">64sp</dimen>
+    <dimen name="text_max">75sp</dimen>
 </resources>

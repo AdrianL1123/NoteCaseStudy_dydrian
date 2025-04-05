@@ -37,13 +37,12 @@ class NoteAdapter(
         private var binding: ItemNoteBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(note: Note) {
-            binding.tvTitle.text = note.title.crop(10)
-            binding.tvDesc.text = note.desc.crop(20)
+            binding.tvTitle.text = note.title
+            binding.tvDesc.text = note.desc.crop(240)
             binding.mcvNote.setCardBackgroundColor(note.color)
             binding.mcvNote.setOnClickListener {
                 listener?.onClickItem(note)
             }
-
             binding.mcvNote.setOnLongClickListener {
                 // If listener is null, it returns false to avoid NullPointerException.
                 // cuz long click is boolean

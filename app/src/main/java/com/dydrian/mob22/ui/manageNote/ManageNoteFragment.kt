@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.dydrian.mob22.R
 import com.dydrian.mob22.core.showToast
 import com.dydrian.mob22.databinding.FragmentManageNoteBinding
@@ -34,6 +35,10 @@ abstract class ManageNoteFragment : Fragment() {
         setupColorSelection()
         observeViewModel()
         setupSubmitButton()
+
+        binding.btnBackToHome.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     // Handles submission of edit/add + validations
@@ -61,11 +66,11 @@ abstract class ManageNoteFragment : Fragment() {
     private fun setupColorSelection() {
         // Each Triple represents (color box view, tick view, color resource)
         val colorMappings = listOf(
-            Triple(binding.colorBox1, binding.colorBox1Selected, R.color.green),
+            Triple(binding.colorBox1, binding.colorBox1Selected, R.color.lightGreen),
             Triple(binding.colorBox2, binding.colorBox2Selected, R.color.cyan),
-            Triple(binding.colorBox3, binding.colorBox3Selected, R.color.red),
-            Triple(binding.colorBox4, binding.colorBox4Selected, R.color.purple),
-            Triple(binding.colorBox5, binding.colorBox5Selected, R.color.yellow)
+            Triple(binding.colorBox3, binding.colorBox3Selected, R.color.lightRed),
+            Triple(binding.colorBox4, binding.colorBox4Selected, R.color.lightPurple),
+            Triple(binding.colorBox5, binding.colorBox5Selected, R.color.lightYellow)
         )
 
         // Set a click listener on each color box to update selection
@@ -95,11 +100,11 @@ abstract class ManageNoteFragment : Fragment() {
     // Programmatically selects the color box that matches the given color
     protected fun preselectColor(color: Int) {
         val colorMappings = listOf(
-            Triple(binding.colorBox1, binding.colorBox1Selected, R.color.green),
+            Triple(binding.colorBox1, binding.colorBox1Selected, R.color.lightGreen),
             Triple(binding.colorBox2, binding.colorBox2Selected, R.color.cyan),
-            Triple(binding.colorBox3, binding.colorBox3Selected, R.color.red),
-            Triple(binding.colorBox4, binding.colorBox4Selected, R.color.purple),
-            Triple(binding.colorBox5, binding.colorBox5Selected, R.color.yellow)
+            Triple(binding.colorBox3, binding.colorBox3Selected, R.color.lightRed),
+            Triple(binding.colorBox4, binding.colorBox4Selected, R.color.lightPurple),
+            Triple(binding.colorBox5, binding.colorBox5Selected, R.color.lightYellow)
         )
 
         // Find the matching color and activate its tick

@@ -15,11 +15,17 @@
     <color name="pink">#FFFFC0CB</color>
     <color name="brown">#FFA52A2A</color>
     <color name="grey">#FF808080</color>
-    <color name="cyan">#FF00FFFF</color>
+    <color name="cyan">#9ffffe</color>
     <color name="skyBlue">#87CEEB</color>
     <color name="teal_blue">#497c93</color>
     <color name="beige">#F8F3F3</color>
     <color name="magenta">#aa00bb</color>
     <color name="lightOrange">#fec90b</color>
-    <color name="darkGrey">#121212</color>
+    <color name="darkGrey">#252424</color>
+    <color name="lilac">#c4caff</color>
+    <color name="lightGreen">#91f48f</color>
+    <color name="lightRed">#e9505a</color>
+    <color name="lightPink">#fec5ff</color>
+    <color name="lightYellow">#fff498</color>
+    <color name="lightPurple">#BBA0D6</color>
 </resources>

@@ -1,61 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp">
+    android:layout_marginHorizontal="20dp"
+    app:cardCornerRadius="20dp"
+    app:cardBackgroundColor="@color/white">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="@dimen/ml"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@drawable/ic_info_outlined"
+            android:layout_marginBottom="@dimen/ml" />
 
         <TextView
             android:id="@+id/tvLogoutTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:text="@string/logout_text"
+            android:textSize="@dimen/text_ml"
+            android:textStyle="bold"
             android:gravity="center"
-            android:text="Logout"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/tvLogoutMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="Are you sure you want to log out?"
-            android:textSize="16sp" />
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:gravity="center"
+            android:text="@string/logout_confirmation"
+            android:textSize="@dimen/text_m"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
-                android:textColor="@color/white"
                 android:id="@+id/btnCancel"
-                android:layout_width="0dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/s"
-                android:layout_weight="1"
-                android:backgroundTint="@color/gray"
-                android:text="Cancel" />
+                android:layout_marginEnd="32dp"
+                android:text="@string/cancel_btn"
+                android:textStyle="bold"
+                android:backgroundTint="@color/lightBlue"
+                app:cornerRadius="5dp"/>
 
             <com.google.android.material.button.MaterialButton
-                android:textColor="@color/white"
                 android:id="@+id/btnLogout"
-                android:layout_width="0dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="@color/black"
-                android:text="Logout" />
+                android:text="@string/logout_btn"
+                android:textStyle="bold"
+                android:backgroundTint="@color/red"
+                app:cornerRadius="5dp"/>
         </LinearLayout>
+
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

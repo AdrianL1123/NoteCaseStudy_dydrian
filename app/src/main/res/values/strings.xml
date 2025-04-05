@@ -7,18 +7,18 @@
     <string name="error">An error has occurred</string>
     <string name="empty_title">"Title cannot be empty"</string>
     <string name="empty_desc">Description cannot be empty</string>
-    <string name="add_note">Add Note</string>
-    <string name="enter_title">Enter Your Title</string>
-    <string name="enter_desc">Enter Your Description</string>
+    <string name="add_note">New Note</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="enter_desc">Enter Description</string>
     <string name="add_btn">Add</string>
     <string name="details_title">Details</string>
-    <string name="note_details_title">Your Note\'s Title</string>
-    <string name="note_details_desc">Your Note\'s Description</string>
+    <string name="note_details_title">Your Title</string>
+    <string name="note_details_desc">Your Description</string>
     <string name="edit_btn">Edit</string>
     <string name="delete_btn">Delete</string>
     <string name="back_btn">Back</string>
     <string name="delete_prompt">Are you sure?</string>
-    <string name="delete_text">This note will be deleted.\nAction is not be reversible !</string>
+    <string name="delete_text">Are you sure you want \n to delete this note ?</string>
     <string name="cancel_btn">CANCEL</string>
     <string name="cfm_delete">DELETE</string>
     <string name="delete_successfully">Note deleted successfully!</string>
@@ -34,4 +34,12 @@
     <string name="edit_note">Edit Note</string>
     <string name="btnEdit">Edit</string>
     <string name="search_note">Search Note...</string>
+    <string name="note_details">Details</string>
+    <string name="sub_text">Let\'s get started</string>
+    <string name="greet_text">Welcome</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="title_hint">Title</string>
+    <string name="desc_hint">Description</string>
+    <string name="logout_btn">LOGOUT</string>
+    <string name="logout_text">LOGOUT</string>
 </resources>

@@ -10,14 +10,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black">
+        android:background="@color/darkGrey">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="@dimen/m">
 
             <FrameLayout
                 android:layout_width="40dp"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/my_notes"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="@dimen/text_xxm"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -46,8 +46,8 @@
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="@dimen/m"
+            android:layout_marginBottom="@dimen/m"
             android:background="@drawable/bg_edit_text"
             android:iconifiedByDefault="false"
             app:queryBackground="@android:color/transparent" />
@@ -62,7 +62,7 @@
             android:id="@+id/rvNotes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/m" />
+            android:layout_margin="@dimen/xxxxs" />
 
         <LinearLayout
             android:id="@+id/emptyStateContainer"
@@ -84,9 +84,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingTop="8dp"
+                android:paddingTop="@dimen/xxs"
                 android:text="@string/no_notes_available"
-                android:textSize="18sp"
+                android:textSize="@dimen/text_xm"
                 android:textStyle="italic" />
         </LinearLayout>
     </FrameLayout>
@@ -96,7 +96,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_add" />
+        android:layout_margin="@dimen/m"
+        android:src="@drawable/ic_add"
+        android:backgroundTint="@color/darkGrey"
+        app:tint="@color/lightYellow"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
