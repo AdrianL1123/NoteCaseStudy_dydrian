@@ -45,7 +45,6 @@ class HomeFragment : Fragment() {
         observerState()
         setupSearchView()
 
-
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 adapter.setNotes(notes = state.notes)
@@ -127,6 +126,7 @@ class HomeFragment : Fragment() {
                 2,
                 StaggeredGridLayoutManager.VERTICAL
             )
+        binding.rvNotes.setHasFixedSize(false)
         adapter.listener = object : NoteAdapter.Listener {
             override fun onClickItem(item: Note) {
                 findNavController().navigate(

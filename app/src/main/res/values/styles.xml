@@ -5,4 +5,9 @@
         <item name="android:paddingHorizontal">10dp</item>
         <item name="android:paddingVertical">10dp</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <item name="fontFamily">@font/poppins</item>
+    </style>
+
 </resources>

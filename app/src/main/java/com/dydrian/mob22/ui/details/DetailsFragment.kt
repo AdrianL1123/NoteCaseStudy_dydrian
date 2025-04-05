@@ -1,6 +1,8 @@
 package com.dydrian.mob22.ui.details
 
 import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.util.Log
@@ -56,7 +58,7 @@ class DetailsFragment : Fragment() {
                     binding.tvDesc.text = note.desc
                     binding.cardBg.setBackgroundColor(note.color)
                 }
-                binding.btnBack.setOnClickListener {
+                binding.btnDetailsToHome.setOnClickListener {
                     findNavController().popBackStack()
                 }
                 binding.btnDelete.setOnClickListener {
@@ -78,6 +80,8 @@ class DetailsFragment : Fragment() {
             .setView(dialogView)
             .setCancelable(true)
             .create()
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         dialogView.findViewById<MaterialButton>(R.id.btnCancel).setOnClickListener {
             dialog.dismiss()
