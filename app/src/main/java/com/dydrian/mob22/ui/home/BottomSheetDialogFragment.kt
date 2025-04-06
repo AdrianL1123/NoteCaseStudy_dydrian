@@ -9,10 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dydrian.mob22.R
+import com.dydrian.mob22.core.showToast
 import com.dydrian.mob22.databinding.FragmentBtmSheetDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,10 +64,9 @@ class BottomSheetDialogFragment(
 
         btnDelete.setOnClickListener {
             viewModel.deleteNote(id)
-            Toast.makeText(requireContext(), R.string.delete_successfully, Toast.LENGTH_SHORT)
-                .show()
+            showToast(requireContext(), R.string.delete_successfully.toString())
             dialog.dismiss()
-            this.dismiss() // root dialog to dismiss
+            this.dismiss()
         }
         dialog.show()
     }

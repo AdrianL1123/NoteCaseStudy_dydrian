@@ -15,7 +15,6 @@ import com.dydrian.mob22.databinding.FragmentManageNoteBinding
 abstract class ManageNoteFragment : Fragment() {
     protected lateinit var binding: FragmentManageNoteBinding
 
-    // Holds current selected color box and its tick view
     private var selectedColorBox: View? = null
     private var selectedTickView: ImageView? = null
 
@@ -41,7 +40,6 @@ abstract class ManageNoteFragment : Fragment() {
         }
     }
 
-    // Handles submission of edit/add + validations
     private fun setupSubmitButton() {
         binding.btnManageAddOrEdit.setOnClickListener {
             val title = binding.etTitle.text.toString()
@@ -62,9 +60,7 @@ abstract class ManageNoteFragment : Fragment() {
         }
     }
 
-    // Initializes color box selection logic
     private fun setupColorSelection() {
-        // Each Triple represents (color box view, tick view, color resource)
         val colorMappings = listOf(
             Triple(binding.colorBox1, binding.colorBox1Selected, R.color.lightGreen),
             Triple(binding.colorBox2, binding.colorBox2Selected, R.color.cyan),
@@ -73,7 +69,6 @@ abstract class ManageNoteFragment : Fragment() {
             Triple(binding.colorBox5, binding.colorBox5Selected, R.color.lightYellow)
         )
 
-        // Set a click listener on each color box to update selection
         colorMappings.forEach { (colorBox, tickView, colorRes) ->
             colorBox.setOnClickListener {
                 resetSelectionState()
@@ -85,10 +80,8 @@ abstract class ManageNoteFragment : Fragment() {
         }
     }
 
-    // Suppose to be overridden to store selected color in ViewModel
     protected open fun setSelectedColor(color: Int) {}
 
-    // Suppose to be overridden to retrieve selected color from ViewModel
     protected open fun getSelectedColor(): Int = 0
 
     private fun resetSelectionState() {
@@ -97,7 +90,6 @@ abstract class ManageNoteFragment : Fragment() {
         selectedColorBox = null
     }
 
-    // Programmatically selects the color box that matches the given color
     protected fun preselectColor(color: Int) {
         val colorMappings = listOf(
             Triple(binding.colorBox1, binding.colorBox1Selected, R.color.lightGreen),
@@ -107,7 +99,6 @@ abstract class ManageNoteFragment : Fragment() {
             Triple(binding.colorBox5, binding.colorBox5Selected, R.color.lightYellow)
         )
 
-        // Find the matching color and activate its tick
         val matched = colorMappings.firstOrNull {
             ContextCompat.getColor(requireContext(), it.third) == color
         }

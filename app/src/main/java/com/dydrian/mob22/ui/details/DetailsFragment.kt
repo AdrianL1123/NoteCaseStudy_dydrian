@@ -5,16 +5,15 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.fragment.app.viewModels
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dydrian.mob22.R
+import com.dydrian.mob22.core.showToast
 import com.dydrian.mob22.databinding.FragmentDetailsBinding
 import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,11 +45,11 @@ class DetailsFragment : Fragment() {
                     if (state.note != null) View.VISIBLE else View.GONE
 
                 if (state.isDeleted) {
-                    Toast.makeText(
+                    showToast(
                         requireContext(),
-                        getString(R.string.delete_successfully), Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().popBackStack() // Navigate back after deletion
+                        getString(R.string.delete_successfully)
+                    )
+                    findNavController().popBackStack()
                 }
 
                 state.note?.let { note ->
