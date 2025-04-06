@@ -29,7 +29,7 @@ class HomeViewModel @Inject constructor(
     private val _query = MutableStateFlow("")
 
     init {
-        getNotes()
+        handleIntent(HomeIntent.GetNotes)
     }
 
     fun handleIntent(intent: HomeIntent) {

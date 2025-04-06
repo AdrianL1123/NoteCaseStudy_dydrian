@@ -44,12 +44,7 @@ class HomeFragment : Fragment() {
         setupAdapter()
         observerState()
         setupSearchView()
-
-        lifecycleScope.launch {
-            viewModel.state.collect { state ->
-                adapter.setNotes(notes = state.notes)
-            }
-        }
+        viewModel.handleIntent(HomeIntent.GetNotes)
         lifecycleScope.launch {
             viewModel.filteredNotes.collect { notes ->
                 adapter.setNotes(notes)
@@ -65,8 +60,6 @@ class HomeFragment : Fragment() {
             .error(R.drawable.note_icon)
             .apply(RequestOptions.bitmapTransform(RoundedCorners(32)))
             .into(binding.ivProfile);
-        // using bringToFront() to ensure that the ImageView appears above other views
-        // (like the RecyclerView or FloatingActionButton), so it can receive touch events and be clickable.
         binding.ivProfile.bringToFront()
         binding.ivProfile.setOnClickListener {
             showLogoutDialog()
@@ -74,12 +67,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupSearchView() {
-        // don't need to tap on the search icon to trigger input
         binding.searchView.setIconifiedByDefault(false)
         binding.searchView.queryHint = getString(R.string.search_note)
 
-        // customizing searchView
-        // Source: https://stackoverflow.com/a/29026547/29558271
         val searchEditText = binding.searchView.findViewById<android.widget.EditText>(
             androidx.appcompat.R.id.search_src_text
         )
@@ -145,10 +135,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-    /**
-     * Logout dialog
-     */
     private fun showLogoutDialog() {
         val dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

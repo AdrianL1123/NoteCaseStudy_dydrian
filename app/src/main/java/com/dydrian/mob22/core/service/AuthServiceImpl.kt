@@ -1,12 +1,11 @@
 package com.dydrian.mob22.core.service
 
 import android.content.Context
-import android.util.Log
-import android.widget.Toast
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.exceptions.GetCredentialException
 import com.dydrian.mob22.R
+import com.dydrian.mob22.core.showToast
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -29,14 +28,12 @@ class AuthServiceImpl(
                 authResult.user != null
             } catch (e: GetCredentialException) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, R.string.google_signIn_failed, Toast.LENGTH_SHORT)
-                        .show()
+                    showToast(context, R.string.google_signIn_failed.toString())
                     false
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, R.string.something_went_wrong, Toast.LENGTH_SHORT)
-                        .show()
+                    showToast(context, R.string.something_went_wrong.toString())
                     false
                 }
             }
@@ -71,7 +68,7 @@ class AuthServiceImpl(
             result.credential.data.getString("com.google.android.libraries.identity.googleid.BUNDLE_KEY_ID_TOKEN")
         } catch (e: Exception) {
             withContext(Dispatchers.Main) {
-                Toast.makeText(context, R.string.auth_credentials_error, Toast.LENGTH_SHORT).show()
+                showToast(context, R.string.auth_credentials_error.toString())
                 null
             }
         }

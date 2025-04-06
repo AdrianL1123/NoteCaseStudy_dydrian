@@ -46,7 +46,7 @@ class AuthFragment : BaseFragment() {
                     is AuthState.Error -> {
                         Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
                     }
-                    // Do Nothing
+
                     AuthState.Idle -> {}
                 }
             }
