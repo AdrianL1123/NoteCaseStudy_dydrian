@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">MOB 2.2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="success_add">Note successfully added !</string>
+    <string name="success_update">Note successfully updated !</string>
+    <string name="error">An error has occurred</string>
+    <string name="empty_title">"Title cannot be empty"</string>
+    <string name="empty_desc">Description cannot be empty</string>
+    <string name="add_note">New Note</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="enter_desc">Enter Description</string>
+    <string name="add_btn">Add</string>
+    <string name="details_title">Details</string>
+    <string name="note_details_title">Your Title</string>
+    <string name="note_details_desc">Your Description</string>
+    <string name="edit_btn">Edit</string>
+    <string name="delete_btn">Delete</string>
+    <string name="back_btn">Back</string>
+    <string name="delete_prompt">Are you sure?</string>
+    <string name="delete_text">Are you sure you want \n to delete this note ?</string>
+    <string name="cancel_btn">CANCEL</string>
+    <string name="cfm_delete">DELETE</string>
+    <string name="delete_successfully">Note deleted successfully!</string>
+    <string name="my_notes">My Notes</string>
+    <string name="no_notes_available">No Notes Available</string>
+    <string name="auth_credentials_error">Error fetching credentials</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="google_signIn_failed">Google Sign-In failed.</string>
+    <string name="no_valid_user_found">No valid user found</string>
+    <string name="login_failed">Login failed</string>
+    <string name="logout_confirmation">Are you sure you want to log out of account %1$s ? </string>
+    <string name="note_not_found">Note not found</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="btnEdit">Edit</string>
+    <string name="search_note">Search Note...</string>
+    <string name="note_details">Details</string>
+    <string name="sub_text">Let\'s get started</string>
+    <string name="greet_text">Welcome</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="title_hint">Title</string>
+    <string name="desc_hint">Description</string>
+    <string name="logout_btn">LOGOUT</string>
+    <string name="logout_text">LOGOUT</string>
 </resources>
